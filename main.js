@@ -5,8 +5,9 @@ var os = require('os');
 
 var hangman = new Game();
 
-// Display word with dashes
-//hangman.showWord();
+hangman.initializeGame();
+
+playGame();
 
 function playGame() {
 	console.log(os.EOL + hangman.word.getDisplayWord() + os.EOL);
@@ -19,34 +20,27 @@ function playGame() {
 		}
 	]).then(function(data) {
 		var userLetter = data.inputLetter.toUpperCase();
-		//console.log("userLetter:", userLetter);
 
 		var correct = hangman.word.checkLetter(userLetter);
-		//console.log("correct:", correct);
-		// if(correct){
-		// 	console.log("You guessed a correct letter");		
-		// } else {
-		// 	console.log("That letter was incorrect");
-		// }
-		//console.log(hangman.word.getDisplayWord());
-		playGame();
+
+		if(!correct) { 
+			hangman.guesses--; 
+		}
+
+		var guessedWord = hangman.word.getDisplayWord() === hangman.word.getTargetWord();		
+
+		if (hangman.guesses > 0 && !guessedWord) {
+			playGame();
+		}
+		else {
+			if(guessedWord) {
+				console.log("Good job, you won!");
+			} else {
+				console.log("Game over, you lost!");	
+			}
+			
+
+		}
 
 	});
 }
-
-playGame();
-//console.log("hangman.word:", hangman.word);
-// Accept letter guess
-//hangman.word.getDisplayString();
-// var test = ['Cooper', 'Pete', 'Simon', 'Cody', 'Moses'];
-// for (var value of test) {
-// 	console.log(value);
-// }
-
-// Check if letter is in word
-
-// If letter is in word, update display
-
-// Accept another letter guess
-
-// Repeat

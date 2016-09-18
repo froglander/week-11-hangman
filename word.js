@@ -20,23 +20,12 @@ Word.prototype.createLetterObjArray = function() {
 
 Word.prototype.checkLetter = function(letter) {	
 	var isCorrect = false;
-
-	// console.log("isCorrect:", isCorrect);
-	// console.log("letter:", letter);
-
-	// console.log("letterObjArray length: ", this.letterObjArray.length);
-	// console.log("letterObjArray:", this.letterObjArray);
-
 	for (var i = 0; i < this.letterObjArray.length; i++) {
-		// console.log("for loop");
-		// console.log("letter:", letter);
-		// console.log("character:", this.letterObjArray[i].getCharacter());
 		if(letter === this.letterObjArray[i].getCharacter()) {
 			this.letterObjArray[i].guessed = true;
 			isCorrect = true;
 		}
 	}
-	//console.log("isCorrect2:", isCorrect);
 	return isCorrect;
 }
 
@@ -49,4 +38,8 @@ Word.prototype.getDisplayWord = function() {
 	return display;
 }
 
- module.exports = Word;
+Word.prototype.getTargetWord = function() {
+	return this.targetWord.toUpperCase();
+}
+
+module.exports = Word;

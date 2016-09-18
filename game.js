@@ -1,11 +1,11 @@
 // Randomly selects word
-
 var Word = require('./word.js');
 
 var wordsArray = ['Cooper', 'Pete', 'Simon', 'Cody', 'Moses']
 
 var Game = function() {
-	this.word = this.generateRandomWord();
+	this.word;
+	this.guesses = 0;
 }
 
 Game.prototype.generateRandomWord = function() {
@@ -13,8 +13,11 @@ Game.prototype.generateRandomWord = function() {
 	return new Word(randomWord);
 }
 
-// Game.prototype.showWord = function() {
-// 	console.log("word:", this.word.displayWord.join(''));
-// }
+Game.prototype.initializeGame = function() {
+	this.word = this.generateRandomWord();
+	this.guesses = 10;
+
+	console.log("Let's play!");
+}
 
 module.exports = Game; 

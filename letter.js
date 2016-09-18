@@ -2,11 +2,11 @@
 
 var Letter = function(character) {	
 	this.character = character.toUpperCase();
-	this.placeholder = '_';
+	this.placeholder = '-';
 	this.guessed = false;
 }
 
-Letter.prototype.getCharacter = function() {
+Letter.prototype.getDisplayCharacter = function() {
     var char = "";
 	if(this.guessed) 
 		char = this.character;
@@ -14,6 +14,10 @@ Letter.prototype.getCharacter = function() {
 		char = this.placeholder;
 
 	return char; 
+}
+
+Letter.prototype.getCharacter = function() {
+	return this.character;
 }
 
 // Letter.prototype.checkChar = function() {

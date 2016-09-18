@@ -1,0 +1,27 @@
+{
+  "name": "week-11-hangman",
+  "version": "1.0.0",
+  "description": "Simple hangman game written in node.js to explore using constructors",
+  "main": "main.js",
+  "dependencies": {
+    "inquirer": "^1.1.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/froglander/week-11-hangman.git"
+  },
+  "keywords": [
+    "hangman",
+    "node"
+  ],
+  "author": "Kristi Heredia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/froglander/week-11-hangman/issues"
+  },
+  "homepage": "https://github.com/froglander/week-11-hangman#readme"
+}

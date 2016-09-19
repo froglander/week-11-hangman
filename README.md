@@ -1,2 +1,2 @@
-# week11-hangman
-Week 10 homework - Node hangman
+# week-11-hangman
+Week 11 homework - Node hangman

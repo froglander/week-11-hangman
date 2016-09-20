@@ -11,6 +11,7 @@ var wordsArray = ['Cooper', 'Pete', 'Simon', 'Cody', 'Moses']
 var Game = function() {
 	this.word;
 	this.guesses = 0;
+	this.lettersGuessed = [];
 }
 
 /* ************************************************************	*/
@@ -33,6 +34,7 @@ Game.prototype.generateRandomWord = function() {
 Game.prototype.initializeGame = function(guesses) {
 	this.word = this.generateRandomWord();
 	this.guesses = guesses;
+	this.lettersGuessed = [];
 
 	console.log("Let's play!");
 }

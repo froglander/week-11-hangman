@@ -17,8 +17,8 @@ playGame();
 /* ************************************************************	*/
 function playGame() {
 	// Display the word at the beginning of each round
-	// First time through will be all placeholder characters
-	console.log(os.EOL + hangman.word.getDisplayWord() + os.EOL);
+	// First time through will be all placeholder characters	
+	console.log("Guesses remaining: " + hangman.guesses + os.EOL + hangman.word.getDisplayWord() + os.EOL);
 
 	// guessedWord is a boolean value that is assigned the result of comparing the
 	// current state of the displayWord to the targetWord
@@ -31,17 +31,30 @@ function playGame() {
 		{
 			type: "input",
 			name: "inputLetter",
-			message: "Guess a letter:"
+			message: "Guess a letter:",
+			validate: function(value) {
+				var pass = /^[a-z]$/i.test(value);
+				if (pass) {
+					return true;
+				}
+				return 'Please enter a valid single character.'
+			}
 		}
 		]).then(function(data) {
 			// Uppercase version of user's guess
 			var userLetter = data.inputLetter.toUpperCase();
-			// Boolean value to hold if correct = true or false
-			var correct = hangman.word.checkLetter(userLetter);
-			// If not correct, decrement guesses remaining
-			if(!correct) { 
-				hangman.guesses--; 
-			}
+
+			if (hangman.lettersGuessed.indexOf(userLetter) == -1 ) {			
+				hangman.lettersGuessed.push(userLetter);
+				// Boolean value to hold if correct = true or false
+				var correct = hangman.word.checkLetter(userLetter);
+				// If not correct, decrement guesses remaining
+				if(!correct) { 
+					hangman.guesses--; 
+				}
+			} else { 
+				console.log("You already tried the letter " + userLetter);
+			}		
 			// Play next round
 			playGame();
 		});		
@@ -49,7 +62,7 @@ function playGame() {
 	else {
 		// Otherwise, if you've guessed the word, say good job
 		if(guessedWord) {
-			console.log(os.EOL + hangman.word.getDisplayWord() + os.EOL);
+			//console.log(os.EOL + hangman.word.getDisplayWord() + os.EOL);
 			console.log("Good job, you won!");
 		} 
 		// Or game over message

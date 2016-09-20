@@ -32,6 +32,8 @@ function playGame() {
 			type: "input",
 			name: "inputLetter",
 			message: "Guess a letter:",
+			// Make sure user enters a valid character from a-z (no numbers
+			// or special characters allowed)
 			validate: function(value) {
 				var pass = /^[a-z]$/i.test(value);
 				if (pass) {
@@ -43,7 +45,8 @@ function playGame() {
 		]).then(function(data) {
 			// Uppercase version of user's guess
 			var userLetter = data.inputLetter.toUpperCase();
-
+			// Check if user has already guessed that letter, if not, add
+			// to lettersGuessed, if they have, tell them and move on
 			if (hangman.lettersGuessed.indexOf(userLetter) == -1 ) {			
 				hangman.lettersGuessed.push(userLetter);
 				// Boolean value to hold if correct = true or false
